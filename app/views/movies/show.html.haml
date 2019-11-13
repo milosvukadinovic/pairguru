@@ -1,4 +1,8 @@
 %h1= @movie.title
+%h2= "Rating: " + "#{@response["data"]["attributes"]["rating"]}"
+%h3= "#{@response["data"]["attributes"]["plot"]}"
+%br
+%img(src="https://pairguru-api.herokuapp.com#{@response["data"]["attributes"]["poster"]}")
 .jumbotron
   = @movie.description
 - if user_signed_in?
