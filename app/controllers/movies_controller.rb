@@ -1,3 +1,8 @@
+require 'httparty'
+require 'uri'
+require "open-uri"
+require "json"
+
 class MoviesController < ApplicationController
   before_action :authenticate_user!, only: [:send_info]
 
@@ -7,6 +12,13 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    details_find
+  end
+  
+  def details_find
+    url='https://pairguru-api.herokuapp.com/api/v1/movies/'+URI.encode(@movie.title)
+    @response = HTTParty.get(url)
+    json = JSON.parse(@response.body)
   end
 
   def send_info
