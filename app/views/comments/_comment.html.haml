@@ -1,0 +1,9 @@
+%h4 Comments: 
+%table.table.table-hover
+  - movie.comments.each do |comment|
+    %tr
+      %td{:class => "comment"}= comment.content
+      %td= "Comment by: #{User.find(comment.user_id).email}"
+      %td
+        = link_to "Delete", movie_comment_path(movie_id: comment.movie.id, id: comment.id), method: :delete, data: {confirm: "The comment will be deleted"}, class: "button btn btn-danger" if current_user == comment.user do
+          %button.btn.btn-outline-danger.btn_margin
