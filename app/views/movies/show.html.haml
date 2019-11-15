@@ -1,10 +1,14 @@
 %h1= @movie.title
-%h2= "Rating: " + "#{@response["data"]["attributes"]["rating"]}"
-%h3= "#{@response["data"]["attributes"]["plot"]}"
-%br
-%img(src="https://pairguru-api.herokuapp.com#{@response["data"]["attributes"]["poster"]}")
-.jumbotron
-  = @movie.description
+
+- [:rating, :released_at, :genre_name, :plot].each do |attr_name|
+  - if movie.public_send(attr_name).present?
+    %tr
+    %td.attribute-name
+    = human_attr(:movie, attr_name)
+    %td
+    = movie.public_send(attr_name)
+    %br
+%img.img-responsive{ src: movie.cover_url }
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
   =render partial: 'comments/comment', locals: { movie: @movie}

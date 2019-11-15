@@ -6,21 +6,17 @@ require "json"
 class MoviesController < ApplicationController
   before_action :authenticate_user!, only: [:send_info, :export]
 
+  expose_decorated(:movies) { Movie.all.includes(:genre) }
+  expose_decorated(:movie)
+  
   def index
     @movies = Movie.all.decorate
   end
 
   def show
     @movie = Movie.find(params[:id])
-    details_find
   end
-  
-  def details_find
-    url='https://pairguru-api.herokuapp.com/api/v1/movies/'+URI.encode(@movie.title)
-    @response = HTTParty.get(url)
-    json = JSON.parse(@response.body)
-  end
-
+ 
   def send_info
     @movie = Movie.find(params[:id])
     MovieInfoMailer.send_info(current_user, @movie).deliver_later
