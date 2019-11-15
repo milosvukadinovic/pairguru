@@ -1,0 +1,21 @@
+%h1.text-center This week top commenters
+.row
+  .col-md-12
+    %table.table.table-light
+      %thead
+        %tr
+          %th= "Rank"
+          %th= "Id"
+          %th= "Name"
+          %th= "Email"
+          %th= "Comments number"
+
+        %tbody
+          %tr
+            -@top_users.each_with_index do |user, index|
+              %tr
+                %td= index + 1
+                %td= user.id
+                %td= user.name
+                %td= user.email
+                %td= user.comments.count
