@@ -12,6 +12,11 @@ gem "sass-rails"
 gem 'sqlite3', '~> 1.3', '< 1.4'
 gem "uglifier"
 gem "httparty"
+gem 'grape'
+gem 'rack-cors'
+gem 'grape-active_model_serializers'
+gem 'active_model_serializers'
+gem 'sidekiq'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
