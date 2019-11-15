@@ -17,6 +17,8 @@ gem 'rack-cors'
 gem 'grape-active_model_serializers'
 gem 'active_model_serializers'
 gem 'sidekiq'
+gem 'simple_form'
+gem 'nested_form'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false

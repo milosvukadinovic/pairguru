@@ -1,0 +1,7 @@
+.row
+  .col-xs-12
+    =  simple_nested_form_for [movie, movie.comments.new] do |f|
+      .form-group
+        .control-label.col-sm-2
+          = f.input :content, error: false, required: true
+          = f.button :submit, class: "btn btn-primary"
